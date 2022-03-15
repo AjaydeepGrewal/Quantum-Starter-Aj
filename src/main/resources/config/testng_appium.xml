@@ -41,7 +41,7 @@
         </classes>
     </test>
     
-    <test name="Android Emulator Expense Tracker Test" enabled="true">
+     <!--<test name="Android Emulator Expense Tracker Test" enabled="true">
         <parameter name="driver.additional.capabilities" value="{'useVirtualDevice':true}" />
 		<parameter name="driver.capabilities.platformName" value="Android"/>
 		<parameter name="driver.capabilities.platformVersion" value="11"/>
@@ -59,7 +59,7 @@
         </classes>
     </test>
     
-    <!--<test name="iOS Simulator Expense Tracker Test" enabled="true">
+   <test name="iOS Simulator Expense Tracker Test" enabled="true">
         <parameter name="driver.additional.capabilities" value="{'useVirtualDevice':true}" />
 		<parameter name="driver.capabilities.platformName" value="iOS"/>
 		<parameter name="driver.capabilities.platformVersion" value="14.3"/>
