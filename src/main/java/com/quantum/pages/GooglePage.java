@@ -1,7 +1,11 @@
 package com.quantum.pages;
 
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.lang3.time.StopWatch;
 
 import com.qmetry.qaf.automation.core.ConfigurationManager;
 import com.qmetry.qaf.automation.ui.WebDriverBaseTestPage;
@@ -39,9 +43,22 @@ public class GooglePage extends WebDriverBaseTestPage<WebDriverTestPage> {
 	}
 
 	public void verifyResult(String result){
+		StopWatch stopwatch = new StopWatch();
+		stopwatch.start();
+		
 		QAFExtendedWebElement searchResult = new QAFExtendedWebElement(String.format(ConfigurationManager.getBundle().getString("search.result.link"), result));
 		searchResult.waitForVisible(5000);
-		ReportUtils.logAssert("Expected result: " + result, searchResult.isDisplayed());	
+		ReportUtils.logAssert("Expected result: " + result, searchResult.isDisplayed());
+		
+		stopwatch.stop();
+		long x = stopwatch.getTime();
+		String numberAsString = Long.toString(x);
+		
+		Map<String, Object> params1 = new HashMap<>();
+		params1.put("name", "stopwatch timer Result");
+		params1.put("result", numberAsString);
+		Object result1 =  driver.executeScript("mobile:status:timer", params1);
+		System.out.println("Timer: " + result1);
 	}
 
 	public void verifyResult(List<String> results){
