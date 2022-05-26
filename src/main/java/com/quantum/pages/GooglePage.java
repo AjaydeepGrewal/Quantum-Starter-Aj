@@ -55,7 +55,7 @@ public class GooglePage extends WebDriverBaseTestPage<WebDriverTestPage> {
 		String numberAsString = Long.toString(x);
 		
 		Map<String, Object> params1 = new HashMap<>();
-		params1.put("name", "stopwatch timer Result");
+		params1.put("name", "Timer A");
 		params1.put("result", numberAsString);
 		Object result1 =  driver.executeScript("mobile:status:timer", params1);
 		System.out.println("Timer: " + result1);
