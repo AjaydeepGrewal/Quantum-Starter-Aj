@@ -13,6 +13,7 @@ Feature: Google Search
     Given I am on Google Search Page
     When I search for "perfecto mobile quantum"
     Then it should have "<Search>" in search results
+    Examples:
       | Search   |
       | perfecto |
       | Quantum |
