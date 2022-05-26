@@ -74,11 +74,22 @@ public class GooglePage extends WebDriverBaseTestPage<WebDriverTestPage> {
 	}
 
 	public void verifyResult(List<String> results){
+		StopWatch stopwatch = new StopWatch();
+		stopwatch.start();
 		QAFExtendedWebElement searchResultElement;
 		for (String result : results) {
 			QAFExtendedWebElement searchResult = new QAFExtendedWebElement(String.format(ConfigurationManager.getBundle().getString("search.result.link"), result));
 			searchResult.waitForVisible(5000);
 			ReportUtils.logAssert("Expected result: " + result, searchResult.isDisplayed());
 		}
+		stopwatch.stop();
+		long x = stopwatch.getTime();
+		String numberAsString = Long.toString(x);
+		
+		Map<String, Object> params1 = new HashMap<>();
+		params1.put("name", "Timer A");
+		params1.put("result", numberAsString);
+		Object result1 =  driver.executeScript("mobile:status:timer", params1);
+		System.out.println("Timer A: " + result1);
 	}
 }
