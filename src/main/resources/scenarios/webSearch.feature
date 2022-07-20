@@ -17,6 +17,10 @@ Feature: Google Search
       | Category   		   | Car |
       |  SUVS & CROSSOVERS | ecosport |
       |  SUVS & CROSSOVERS | escape |
+      |  SUVS & CROSSOVERS | expedition |
+      |  TRUCKS & VANS 	   | maverick |
+      |  TRUCKS & VANS 	   | ranger |
+      |  TRUCKS & VANS 	   | transit |
 
   @WebResultsList
   Scenario: Search Quantum with results
