@@ -4,3 +4,8 @@ search.option = {\"locator\":\"xpath=(//*[text()='%s'])[1]",\"desc\":\"search op
 search.result.link = {\"locator\":\"partialLink=%s",\"desc\":\"search results partial link in google\"}
 #The below sample syntax used below is called alternate locator strategy. The element will be searched using the first locator and if there is no element then the second locator will be tried.
 #search.button=["xpath=//input[@aria-label='Google Search']","xpath=//button[@aria-label='Google Search']"]
+youtube.video=//*[@class="rich-grid-renderer-contents"]/ytm-rich-item-renderer[1]/ytm-video-with-context-renderer[1]/ytm-media-item[1]/a[1]/div[1]
+ford.homepage.nav=xpath=//div[@class = 'navbar-header no-float-md']
+ford.homepage.nav.subsection=xpath=//span[@class = 'content-wrap']//child::span[text() = '%s']
+ford.homepage.nav.subsection.load=xpath=//div[@id = 'brand-nav-vm-seg1-cnt']//child::ul[@class = 'column-wrap-container fgx-clean-ul fgx-brand-container-pad-mbl left-indt-mbl']
+ford.car=xpath=//li[@id = 'brand-nav-vm-seg1-%s-item']
