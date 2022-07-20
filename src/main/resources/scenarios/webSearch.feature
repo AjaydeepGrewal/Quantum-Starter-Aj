@@ -12,7 +12,9 @@ Feature: Google Search
   Scenario: Search Quantum with results
     Given I am on Google Search Page
     When I search for "perfecto mobile quantum"
-    Then it should have following search results:
+    Then it should have "<Search>" in search results
+    Examples:
+      | Search   |
       | perfecto |
       | Quantum |
 

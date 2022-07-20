@@ -35,11 +35,23 @@ public class GooglePage extends WebDriverBaseTestPage<WebDriverTestPage> {
 
 
 	public void search(String searchKey){
+		StopWatch stopwatch = new StopWatch();
+		stopwatch.start();
 		searchTextBox.clear();
 		searchTextBox.sendKeys(searchKey);
 		// The following element is an example of creating run time objects on the fly
 		QAFExtendedWebElement search = new QAFExtendedWebElement(String.format(props.getString("search.option"), searchKey));
 		search.click();
+		
+		stopwatch.stop();
+		long x = stopwatch.getTime();
+		String numberAsString = Long.toString(x);
+		
+		Map<String, Object> params1 = new HashMap<>();
+		params1.put("name", "Timer A");
+		params1.put("result", numberAsString);
+		Object result1 =  driver.executeScript("mobile:status:timer", params1);
+		System.out.println("Timer A: " + result1);
 	}
 
 	public void verifyResult(String result){
@@ -55,18 +67,29 @@ public class GooglePage extends WebDriverBaseTestPage<WebDriverTestPage> {
 		String numberAsString = Long.toString(x);
 		
 		Map<String, Object> params1 = new HashMap<>();
-		params1.put("name", "stopwatch timer Result");
+		params1.put("name", "Timer B");
 		params1.put("result", numberAsString);
 		Object result1 =  driver.executeScript("mobile:status:timer", params1);
-		System.out.println("Timer: " + result1);
+		System.out.println("Timer: B" + result1);
 	}
 
 	public void verifyResult(List<String> results){
+		StopWatch stopwatch = new StopWatch();
+		stopwatch.start();
 		QAFExtendedWebElement searchResultElement;
 		for (String result : results) {
 			QAFExtendedWebElement searchResult = new QAFExtendedWebElement(String.format(ConfigurationManager.getBundle().getString("search.result.link"), result));
 			searchResult.waitForVisible(5000);
 			ReportUtils.logAssert("Expected result: " + result, searchResult.isDisplayed());
 		}
+		stopwatch.stop();
+		long x = stopwatch.getTime();
+		String numberAsString = Long.toString(x);
+		
+		Map<String, Object> params1 = new HashMap<>();
+		params1.put("name", "Timer A");
+		params1.put("result", numberAsString);
+		Object result1 =  driver.executeScript("mobile:status:timer", params1);
+		System.out.println("Timer A: " + result1);
 	}
 }
