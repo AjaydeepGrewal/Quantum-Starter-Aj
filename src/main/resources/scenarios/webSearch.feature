@@ -18,9 +18,10 @@ Feature: Google Search
       |  SUVS & CROSSOVERS | ecosport |
       |  SUVS & CROSSOVERS | escape |
       |  SUVS & CROSSOVERS | expedition |
-      |  TRUCKS & VANS 	   | maverick |
-      |  TRUCKS & VANS 	   | ranger |
-      |  TRUCKS & VANS 	   | transit |
+      |  SUVS & CROSSOVERS | edge |
+      |  SUVS & CROSSOVERS | explorer |
+      |  SUVS & CROSSOVERS | mache |
+
 
   @WebResultsList
   Scenario: Search Quantum with results
