@@ -7,6 +7,16 @@ Feature: Google Search
     When I search for "perfecto mobile quantum"
     Then it should have "perfecto" in search results
     Then I am on Google Search Page
+    
+  @Ford
+  Scenario Outline: Load Ford pages
+    Given I load ford homepage
+    When I load vehicle category page for "<Category>"
+    Then I load page for "<Car>"
+    Examples:
+      | Category   		   | Car |
+      |  SUVS & CROSSOVERS | ecosport |
+      |  SUVS & CROSSOVERS | escape |
 
   @WebResultsList
   Scenario: Search Quantum with results
