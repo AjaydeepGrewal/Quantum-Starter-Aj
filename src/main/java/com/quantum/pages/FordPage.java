@@ -52,7 +52,7 @@ public class FordPage extends WebDriverBaseTestPage<WebDriverTestPage> {
 		String time = Long.toString(x);
 		
 		Map<String, Object> params1 = new HashMap<>();
-		params1.put("name", "HomePage");
+		params1.put("name", "HomePage Timer");
 		params1.put("result", time);
 		Object result =  DriverUtils.getDriver().executeScript("mobile:status:timer", params1);
 		System.out.println("HomePage Timer " + result);
@@ -71,7 +71,7 @@ public class FordPage extends WebDriverBaseTestPage<WebDriverTestPage> {
 		String time = Long.toString(x);
 		
 		Map<String, Object> params1 = new HashMap<>();
-		params1.put("name", subpage);
+		params1.put("name", subpage + "Timer");
 		params1.put("result", time);
 		Object result =  DriverUtils.getDriver().executeScript("mobile:status:timer", params1);
 		System.out.println("Subpage Timer " + result);
@@ -89,7 +89,7 @@ public class FordPage extends WebDriverBaseTestPage<WebDriverTestPage> {
 		String time = Long.toString(x);
 		
 		Map<String, Object> params1 = new HashMap<>();
-		params1.put("name", car);
+		params1.put("name", car + "Timer");
 		params1.put("result", time);
 		Object result =  DriverUtils.getDriver().executeScript("mobile:status:timer", params1);
 		System.out.println("Car Timer " + result);
