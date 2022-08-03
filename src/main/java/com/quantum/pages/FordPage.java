@@ -39,6 +39,9 @@ public class FordPage extends WebDriverBaseTestPage<WebDriverTestPage> {
 	
 	@FindBy(locator = "ford.ca")
 	private QAFExtendedWebElement car;
+	
+	@FindBy(locator="xpath=//span[@class = 'model-name']")
+	private QAFExtendedWebElement buildPrice;
 
 	public void loadFordHompepage() {
 		StopWatch stopwatch = new StopWatch();
@@ -64,7 +67,7 @@ public class FordPage extends WebDriverBaseTestPage<WebDriverTestPage> {
 		
 		QAFExtendedWebElement loadSubPage = new QAFExtendedWebElement(String.format(ConfigurationManager.getBundle().getString("ford.homepage.nav.subsection"), subpage));
 		loadSubPage.click();
-		subSectionLoaded.waitForVisible(5000);
+		subSectionLoaded.waitForVisible(20000);
 		
 		stopwatch.stop();
 		long x = stopwatch.getTime();
@@ -82,7 +85,8 @@ public class FordPage extends WebDriverBaseTestPage<WebDriverTestPage> {
 		stopwatch.start();
 		
 		QAFExtendedWebElement loadSubPage = new QAFExtendedWebElement(String.format(ConfigurationManager.getBundle().getString("ford.car"), car));
-		loadSubPage.waitForVisible(5000);
+		loadSubPage.click();
+		buildPrice.waitForVisible(10000);
 		
 		stopwatch.stop();
 		long x = stopwatch.getTime();

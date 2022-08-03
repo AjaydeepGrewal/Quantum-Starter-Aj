@@ -9,19 +9,18 @@ Feature: Google Search
     Then I am on Google Search Page
     
   @Ford
-  Scenario Outline: Load Ford pages
+  Scenario: Load Ford pages
     Given I load ford homepage
-    When I load vehicle category page for "<Category>"
-    Then I load page for "<Car>"
-    Examples:
-      | Category   		   | Car |
-      |  SUVS & CROSSOVERS | ecosport |
-      |  SUVS & CROSSOVERS | escape |
-      |  SUVS & CROSSOVERS | expedition |
-      |  SUVS & CROSSOVERS | edge |
-      |  SUVS & CROSSOVERS | explorer |
-      |  SUVS & CROSSOVERS | mache |
-
+    When I load vehicle category page for "SUVS & CROSSOVERS"
+    Then I load page for "ecosport"
+    When I load vehicle category page for "SUVS & CROSSOVERS"
+    Then I load page for "escape"
+    When I load vehicle category page for "SUVS & CROSSOVERS"
+    Then I load page for "expedition"
+    When I load vehicle category page for "SUVS & CROSSOVERS"
+    Then I load page for "edge"
+    When I load vehicle category page for "SUVS & CROSSOVERS"
+    Then I load page for "explorer"
 
   @WebResultsList
   Scenario: Search Quantum with results

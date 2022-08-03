@@ -8,4 +8,4 @@ youtube.video=//*[@class="rich-grid-renderer-contents"]/ytm-rich-item-renderer[1
 ford.homepage.nav=xpath=//div[@class = 'navbar-header no-float-md']
 ford.homepage.nav.subsection=xpath=//span[@class = 'content-wrap']//child::span[text() = '%s']
 ford.homepage.nav.subsection.load=xpath=//div[@id = 'brand-nav-vm-seg1-cnt']//child::ul[@class = 'column-wrap-container fgx-clean-ul fgx-brand-container-pad-mbl left-indt-mbl']
-ford.car=xpath=//li[@id = 'brand-nav-vm-seg1-%s-item']
+ford.car=xpath=//li[@id = 'brand-nav-vm-seg1-%s-item']//descendant::div[@class = 'img-wrap']
