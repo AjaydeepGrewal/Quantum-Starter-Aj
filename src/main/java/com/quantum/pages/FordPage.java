@@ -42,72 +42,69 @@ public class FordPage extends WebDriverBaseTestPage<WebDriverTestPage> {
 	
 	@FindBy(locator="xpath=//span[@class = 'model-name']")
 	private QAFExtendedWebElement buildPrice;
+	
+	StopWatch stopwatch = new StopWatch();
 
 	public void loadFordHompepage() {
-		StopWatch stopwatch = new StopWatch();
-		stopwatch.start();
-		
 		DriverUtils.getDriver().get("https://www.ford.ca/");
-		DeviceUtilsExtended.waitForDisplayed(homepageNav, 5000);
 		
+		stopwatch.start();
+		DeviceUtilsExtended.waitForDisplayed(homepageNav, 20000);
 		stopwatch.stop();
+		
 		long x = stopwatch.getTime();
 		String time = Long.toString(x);
 		
-		Map<String, Object> params1 = new HashMap<>();
-		params1.put("name", "HomePage Timer");
-		params1.put("result", time);
-		Object result =  DriverUtils.getDriver().executeScript("mobile:status:timer", params1);
-		System.out.println("HomePage Timer " + result);
+		injectTimerValueTestReport("HomePage Timer", time);
 	}
 
-	public void loadVehicleCategoryPage(String subpage){
-		try {
-			StopWatch stopwatch = new StopWatch();
-			stopwatch.start();
-			
-			QAFExtendedWebElement loadSubPage = new QAFExtendedWebElement(String.format(ConfigurationManager.getBundle().getString("ford.homepage.nav.subsection"), subpage));
-			loadSubPage.click();
-			subSectionLoaded.waitForVisible(20000);
-			
-			stopwatch.stop();
-			long x = stopwatch.getTime();
-			String time = Long.toString(x);
-			
-			Map<String, Object> params1 = new HashMap<>();
-			params1.put("name", subpage + " Timer");
-			params1.put("result", time);
-			Object result =  DriverUtils.getDriver().executeScript("mobile:status:timer", params1);
-			System.out.println("Subpage Timer " + result);
-		}
-		catch(Exception e)
-		{
-			System.out.println(DriverUtils.getDriver().getPageSource());
-		}
+	public void loadVehicleCategoryPage(String subpage) {
+		stopwatch.reset();
+		
+		QAFExtendedWebElement loadSubPage = new QAFExtendedWebElement(String.format(ConfigurationManager.getBundle().getString("ford.homepage.nav.subsection"), subpage));
+		loadSubPage.click();
+		
+		stopwatch.start();	
+		DeviceUtilsExtended.waitForDisplayed(subSectionLoaded, 20000);			
+		stopwatch.stop();
+		
+		long x = stopwatch.getTime();
+		String time = Long.toString(x);
+		
+		injectTimerValueTestReport(subpage + " Timer", time);
 	}
 
 	public void loadCarPage(String car){
-		StopWatch stopwatch = new StopWatch();
-		stopwatch.start();
-		
-		try {
-			QAFExtendedWebElement loadSubPage = new QAFExtendedWebElement(String.format(ConfigurationManager.getBundle().getString("ford.car"), car));
-			loadSubPage.click();
-			buildPrice.waitForVisible(10000);
-			
-			stopwatch.stop();
-			long x = stopwatch.getTime();
-			String time = Long.toString(x);
-			
-			Map<String, Object> params1 = new HashMap<>();
-			params1.put("name", car + " Timer");
-			params1.put("result", time);
-			Object result =  DriverUtils.getDriver().executeScript("mobile:status:timer", params1);
-			System.out.println("Car Timer " + result);
+		stopwatch.reset();
+		QAFExtendedWebElement loadSubPage = new QAFExtendedWebElement(String.format(ConfigurationManager.getBundle().getString("ford.homepage.nav.subsection"), "SUVS & CROSSOVERS"));
+		QAFExtendedWebElement loadVehiclePage = new QAFExtendedWebElement(String.format(ConfigurationManager.getBundle().getString("ford.car"), car));
+		try
+		{
+			loadVehiclePage.click();
 		}
 		catch(Exception e)
 		{
-			System.out.println(DriverUtils.getDriver().getPageSource());
+			DriverUtils.getDriver().get("https://www.ford.ca/");
+			loadSubPage.click();
+			loadVehiclePage.click();
 		}
+		
+		stopwatch.start();	
+		buildPrice.waitForVisible(10000);			
+		stopwatch.stop();
+		
+		long x = stopwatch.getTime();
+		String time = Long.toString(x);
+		
+		injectTimerValueTestReport(car + " Timer", time);
+	}
+	
+	public void injectTimerValueTestReport(String timeName, String timerValue)
+	{
+		Map<String, Object> params1 = new HashMap<>();
+		params1.put("name", timeName);
+		params1.put("result", timerValue);
+		Object result =  DriverUtils.getDriver().executeScript("mobile:status:timer", params1);
+		System.out.println(timeName + ":" + result);
 	}
 }
