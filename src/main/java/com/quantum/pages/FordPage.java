@@ -62,8 +62,15 @@ public class FordPage extends WebDriverBaseTestPage<WebDriverTestPage> {
 		stopwatch.reset();
 		
 		QAFExtendedWebElement loadSubPage = new QAFExtendedWebElement(String.format(ConfigurationManager.getBundle().getString("ford.homepage.nav.subsection"), subpage));
-		loadSubPage.click();
-		
+		try
+		{
+			loadSubPage.click();
+		}
+		catch(Exception e)
+		{
+			DriverUtils.getDriver().get("https://www.ford.ca/");
+			loadSubPage.click();
+		}
 		stopwatch.start();	
 		DeviceUtilsExtended.waitForDisplayed(subSectionLoaded, 20000);			
 		stopwatch.stop();
